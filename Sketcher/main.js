@@ -45,7 +45,6 @@ function setTable(top10, probs) {
     }
     //create the pie 
     createPie(".pieID.legend", ".pieID.pie");
-
 }
 
 /*

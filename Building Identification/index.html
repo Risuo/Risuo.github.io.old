@@ -1,13 +1,10 @@
-<html lang="en">
+
 <head>
 <meta charset="UTF-8" />
-<title>GPU built Full 345 class Google Quick-Sketch CNN</title>
+<title>Building Identification</title>
 
 <!-- bs4 css -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"/>
-	
-<!-- css pie -->
-<link rel="stylesheet" href="pie.css">
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -22,24 +19,64 @@
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
 	
 <!-- canvas script -->
+<!--
 <script src="fabric.js"></script>
+-->
 	
 <!-- main script -->
+<!--
 <script src = "main.js" > </script>
+ -->
+
+<!-- map script -->
+<script src = "map.js" > </script>
 
 <!-- main css -->
 <link rel = "stylesheet" href="main.css" > 
 	
 </head>
+
+
+
 <body>
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
   <!-- Brand/logo -->
-  <a class="navbar-brand" href="#"><h1>GPU built Google Quick-Sketch CNN</h1></a>
+  <a class="navbar-brand" href="#"><h1>Building Identification - from Trained from Scratch U-net to<br/>
+      state of the art Transfer learning Detectron2 implementation</h1></a>
   </nav>
-<div class="container-fluid"> 
+
+<div class="container-fluid">
 
 <blockquote class="blockquote text-justify" style="margin:30px;">
- <p> This page leans heavily on the Sketcher project develoepd by Zaid Alyafeai. His page is available here: <a href='https://zaidalyafeai.github.io/sketcher/'  target = "_blank"> Sketcher</a>. The CNN on this page was trained to recognize all 345 classes using the quick draw <a href='https://github.com/googlecreativelab/quickdraw-dataset' target = "_blank"> dataset</a>.
+    <p>Image identification is complicated. </p>
+    <p>My journey from developing a self-trained simple model, all the way to a (not awful) general-purpose instance segmentation model will be detailed within.
+    The journey was long (multiple months) and arduous (hours and hours debugging) but rewarding (look at that! it actually sees buildings!) and (wow, top 10% in a
+    prize-money competition!). </p>
+    <p>I began this journey just about 5 months ago, and I'll try to give you as many details as possible, but first the results!</p>
+    <p>Here is a simple Google Earth map implementation window, within which you can select anywhere on the globe, and send a request to have the
+    trained model infer buildings on. Try fooling around with the orientation (rotate the North/South) or zoom levels and see how it changes the prediction.</p>
+</blockquote>
+
+
+
+
+    <div id="map2_parent">
+        <div id="map2"></div>
+    </div>
+
+    <!-- Replace the value of the key parameter with your own API key. -->
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBczZ45ucetTtum47fp1X3H07YiJJXnQ5w&callback=initMap">
+    </script>
+
+
+    <p></p>
+    <p>Details on the methodology and process begin here:</p>
+
+
+</div>
+<!--
+    <p> This page leans heavily on the Sketcher project develoepd by Zaid Alyafeai. His page is available here: <a href='https://zaidalyafeai.github.io/sketcher/'  target = "_blank"> Sketcher</a>. The CNN on this page was trained to recognize all 345 classes using the quick draw <a href='https://github.com/googlecreativelab/quickdraw-dataset' target = "_blank"> dataset</a>.
     <p> This project is an extension of Zaid's implementation. Rather than limiting to 100 classes, I wanted to see how it would perform under all 345 classes.<p>
     <p> Unsurprisingly, the accuracy is lower, however with training the model was able to achieve almost 90% Top 5 accuracy.<p>
     <p> The model on this page was trained on the following CNN: <p>
@@ -57,72 +94,5 @@
     <p> The link to an earlier, simpler* Colaboratory Notebook prototype with only 160 classes is available here: <a href='https://colab.research.google.com/github/Risuo/Springboard/blob/master/Revised_TPU_Quick_Draw_Data.ipynb' target = "_blank"> Colab</a>
     <small> *Fun note, the prototype was trained using Google's Tensor Processing Unit (TPU) </small><p>
     <footer class="blockquote-footer">Peter Miller</footer>
-  </blockquote>
 </div>
-
-<div class="row">
-  <div class="col" style ='margin-left:100px;'>
-<h4 id ='status' >Loading Model...! </h4>	  
-<canvas id="canvas" width="300" height="300" class="canvas" style="border:1px solid #b9bfc9;margin-top:25px;"></canvas>
-<div class="btn-group" style = 'margin-top:40px; '>
-<input type="range" min="5" max="20" value="10" class="slider" id="myRange" style ='margin-top:20px;'>
-<button type="button" class="btn btn-outline-primary" onclick ='erase()' style ='margin-left:10px;' disabled>Clear</button>
-    </div>   
-</div>
-  <div class="col">
-    <section style="margin-top:120px">
-    <div class="pieID pie">
-      
-    </div>
-    <ul class="pieID legend">
-      <li>
-        <em id = "sym1"></em>
-        <span id = "prob1" ></span>
-      </li>
-      <li>
-        <em id = "sym2"></em>
-        <span id = "prob2"></span>
-      </li>
-      <li>
-        <em id = "sym3"></em>
-        <span id = "prob3"></span>
-      </li>
-      <li>
-        <em id = "sym4"></em>
-        <span id = "prob4"></span>
-      </li>
-      <li>
-        <em id = "sym5"></em>
-        <span id = "prob5"></span>
-      </li>
-      <li>
-        <em id = "sym6"></em>
-        <span id = "prob6"></span>
-      </li>
-      <li>
-        <em id = "sym7"></em>
-        <span id = "prob7"></span>
-      </li>
-      <li>
-        <em id = "sym8"></em>
-        <span id = "prob8"></span>
-      </li>
-      <li>
-        <em id = "sym9"></em>
-        <span id = "prob9"></span>
-      </li>
-      <li>
-        <em id = "sym10"></em>
-        <span id = "prob10"></span>
-      </li>      
-    </ul>
-  </section>
-</div>
-</div>  
-</body>
-<script src="pie.js"></script>
-<script>
-	console.log('starting');
-	start('en')
-</script>
-</html>
+-->

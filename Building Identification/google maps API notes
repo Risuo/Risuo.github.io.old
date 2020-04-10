@@ -1,0 +1,7 @@
+Activate GCP Maps Embed API
+Embed the Google Maps JavaScript API
+Well, we got the dom-to-image working, however, Google has restricted fonts utilized on their Google Maps images
+which breaks the dom-to-image grab.
+Next: attempt to discern the static uri equivalent webaddress of the map shown, pulled from the
+Google Maps static images API.
+

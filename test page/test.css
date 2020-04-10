@@ -1,0 +1,20 @@
+#map2 {
+  height: 50%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 10;
+  padding: 10;
+}
+
+* {
+    box-sizing: border-box;
+}
+#my-node {
+    font-weight: bold;
+}
+#my-node-child {
+    border: 1px solid lightgrey;
+    padding: 1em;
+}

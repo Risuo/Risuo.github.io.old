@@ -1,0 +1,51 @@
+<!-- map script -->
+<script src = "map.js" > </script>
+
+<script src = "dom-to-image.js" > </script>
+
+<!-- main css -->
+<button onclick="grabMap()">Grab Map!</button>
+<link rel = "stylesheet" href="test.css" >
+
+    <div id="map2_parent">
+        <div id="my-node">
+            <div id="map2"></div>
+        </div>
+    </div>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBczZ45ucetTtum47fp1X3H07YiJJXnQ5w&callback=initMap">
+    </script>
+
+    <div id="my-node-parent">
+        <div id="my-node2">
+            <div id="my-node-child">A styled div</div>
+        </div>
+    </div>
+
+<script>
+    function grabMap() {
+        var parent = document.getElementById('my-node-parent');
+        var node = document.getElementById('my-node2');
+
+        var canvas = document.createElement('canvas');
+        canvas.width = node.scrollWidth;
+        canvas.height = node.scrollHeight;
+
+        domtoimage.toPng(node).then(function (pngDataUrl) {
+            var img = new Image();
+            img.onload = function () {
+                var context = canvas.getContext('2d');
+
+                context.translate(canvas.width, 0);
+                context.scale(-1, 1);
+                context.drawImage(img, 0, 0);
+
+                //parent.removeChild(node);
+                parent.appendChild(canvas);
+            };
+
+            img.src = pngDataUrl;
+        });
+    }
+</script>

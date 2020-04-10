@@ -31,3 +31,25 @@
     background: #007AFF;
     cursor: pointer;
 }
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+#map2 {
+  height: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+#my-node {
+    font-weight: bold;
+}
+#my-node-child {
+    border: 1px solid lightgrey;
+    padding: 1em;
+}
