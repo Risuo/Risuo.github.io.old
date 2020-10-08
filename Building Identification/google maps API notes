@@ -5,3 +5,33 @@ which breaks the dom-to-image grab.
 Next: attempt to discern the static uri equivalent webaddress of the map shown, pulled from the
 Google Maps static images API.
 
+When using zoom 21 on google maps static API, a center of
+XX.XXXX,
+YYY.YYY and size 550x550 is one-tile over from
+XX.XXXX,
+YYY.YYY37
+
+
+35.6894,139.692
+35.6894,139.69237
+
+
+function showMaxZoom(e) {
+        maxZoomService.getMaxZoomAtLatLng(e.latLng, function(response) {
+          if (response.status !== 'OK') {
+            infoWindow.setContent('Error in MaxZoomService');
+          } else {
+            infoWindow.setContent(
+                'https://maps.googleapis.com/maps/api/staticmap?center=' +
+                map.getCenter().toUrlValue([8]) +
+                '&zoom=' +
+                response.zoom +
+                '&maptype=satellite' +
+                '&size=640x640' +
+                '&scale=2' +
+                '&key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk');
+          }
+          infoWindow.setPosition(e.latLng);
+          infoWindow.open(map);
+		});
+}

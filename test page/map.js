@@ -36,6 +36,7 @@ function CenterControl2(controlDiv2, map2) {
   // Setup the click event listeners: simply set the map to Chicago.
   controlUI.addEventListener('click', function() {
     map2.setCenter(chicago);
+
   });
 }
 
@@ -59,7 +60,7 @@ function initMap() {
   // Create the DIV to hold the control and call the CenterControl()
   // constructor passing in this DIV.
   var centerControlDiv = document.createElement('div');
-  //var centerControl2 = new CenterControl2(centerControlDiv, map2);
+  var centerControl2 = new CenterControl2(centerControlDiv, map2);
 
   centerControlDiv.index = 1;
   map2.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
