@@ -24,6 +24,7 @@ function iterateSlices(sliceSize, pieElement, offset, dataCount, sliceCount, col
   }
 }
 function createPie(dataElement, pieElement) {
+  $(pieElement).empty();
   var listData = [];
   $(dataElement+" span").each(function() {
     listData.push(Number($(this).html()));
