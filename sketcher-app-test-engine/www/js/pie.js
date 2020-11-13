@@ -1,6 +1,9 @@
 function sliceSize(dataNum, dataTotal) {
   return (dataNum / dataTotal) * 360;
 }
+
+
+
 function addSlice(sliceSize, pieElement, offset, sliceID, color) {
   $(pieElement).append("<div class='slice "+sliceID+"'><span></span></div>");
   var offset = offset - 1;
@@ -46,6 +49,7 @@ function createPie(dataElement, pieElement) {
     "navy",
     "gray"
   ];
+
   for(var i=0; i<listData.length; i++) {
     var size = sliceSize(listData[i], listTotal);
     iterateSlices(size, pieElement, offset, i, 0, color[i]);
