@@ -1,0 +1,66 @@
+
+body {
+    min-height: 100vh;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.hide {
+  display:none;
+}
+
+#uploader {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 50%;
+    margin-bottom: 10px;
+
+}
+
+#activate-map-container {
+    position: absolute;
+    width: calc(100%);
+    height: 100%;
+}
+
+
+#activate-map {
+    background: url("../wh-background.png") no-repeat center;
+    height: calc(100%);
+    background-size: cover;
+    width: 100%;
+}
+#activate-map-btn {
+    background-color: rgba(0,0,0,0.5);
+    height: 100%;
+    width: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#activate-map-btn button {
+    background: transparent;
+    border: 4px solid #fff;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 9px 30px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+#map_canvas_container {
+    position: relative;
+}
+
+#coords {
+  background-color: black;
+  color: white;
+  padding: 5px;
+}

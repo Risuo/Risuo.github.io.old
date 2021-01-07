@@ -1,4 +1,4 @@
-var map2;
+var map;
 var chicago = {lat: 41.85, lng: -87.65};
 
 /**
@@ -7,7 +7,7 @@ var chicago = {lat: 41.85, lng: -87.65};
  * This constructor takes the control DIV as an argument.
  * @constructor
  */
-function CenterControl2(controlDiv2, map2) {
+function CenterControl2(controlDiv2, map) {
 
   // Set CSS for the control border.
   var controlUI = document.createElement('div');
@@ -35,7 +35,7 @@ function CenterControl2(controlDiv2, map2) {
 
   // Setup the click event listeners: simply set the map to Chicago.
   controlUI.addEventListener('click', function() {
-    map2.setCenter(chicago);
+    map.setCenter(chicago);
   });
 }
 
@@ -43,7 +43,7 @@ function CenterControl2(controlDiv2, map2) {
 
 
 function initMap() {
-  map2 = new google.maps.Map(document.getElementById('map2'), {
+  map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
     center: chicago,
     mapTypeId: 'satellite',
@@ -59,11 +59,9 @@ function initMap() {
   // Create the DIV to hold the control and call the CenterControl()
   // constructor passing in this DIV.
   var centerControlDiv = document.createElement('div');
-  var centerControl2 = new CenterControl2(centerControlDiv, map2);
+  var centerControl2 = new CenterControl2(centerControlDiv, map);
 
   centerControlDiv.index = 1;
-  map2.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 
 }
-
-
