@@ -37,10 +37,10 @@
 
     function appendMap() {
         appendScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyCiTASyv4ikDvjz3nRgbGNiUAn-Z4MOLlI&v=3.exp&libraries=places", function() {
-            appendScript("js/gmap/home.js", function () {
+
                 $("#activate-map").css("display", "none");
                 initialize();
-            });
+
         });
     }
 </script>

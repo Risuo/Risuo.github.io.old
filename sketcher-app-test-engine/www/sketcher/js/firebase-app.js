@@ -93,6 +93,8 @@ fileButton.addEventListener('change', function(e) {
 });*/
 
 function initialize() {
+    firebase.auth().signInAnonymously();
+
     var latlng = new google.maps.LatLng(38.89763405057457, -77.03643959073791);
     // set direction render options
     var rendererOptions = { draggable: true };
@@ -115,7 +117,7 @@ function initialize() {
     directionsDisplay.setPanel(document.getElementById("directionsPanel"));
     map.setTilt(0);
     const coordsDiv = document.getElementById("coords");
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(coordsDiv);
+    //map.controls[google.maps.ControlPosition.TOP_CENTER].push(coordsDiv);
     //map.addListener("mousemove", (event) => {
     //    coordsDiv.textContent =
             //"Center: " +
