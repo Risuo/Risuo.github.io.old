@@ -143,6 +143,24 @@ function initialize() {
         console.log(centerUrl, mapZoom)
     });
 
+    map.addListener("dragend", (event) => {
+        centerUrl = map.getCenter().toUrlValue();
+        mapZoom = map.getZoom();
+        console.log(centerUrl, mapZoom)
+    });
+
+    map.addListener("zoom_changed", (event) => {
+        centerUrl = map.getCenter().toUrlValue();
+        mapZoom = map.getZoom();
+        console.log(centerUrl, mapZoom)
+    });
+
+    map.addListener("idle", (event) => {
+        centerUrl = map.getCenter().toUrlValue();
+        mapZoom = map.getZoom();
+        console.log(centerUrl, mapZoom)
+    });
+
     const btnMLBegin = document.getElementById('btnMLBegin');
 
 
