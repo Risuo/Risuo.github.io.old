@@ -23,7 +23,8 @@ body {
 
 #activate-map-container {
     position: absolute;
-    width: calc(100%);
+    width: 640px;
+    /* width: calc(100%);*/
     height: 100%;
 }
 
@@ -32,7 +33,7 @@ body {
     background: url("../wh-background.png") no-repeat center;
     height: calc(100%);
     background-size: cover;
-    width: 100%;
+    width: calc(100%);
 }
 #activate-map-btn {
     background-color: rgba(0,0,0,0.5);
@@ -57,10 +58,12 @@ body {
 }
 #map_canvas_container {
     position: relative;
+    width: 640px;
+    height: 640px;
 }
 
 #coords {
   background-color: black;
   color: white;
-  padding: 5px;
+  /*padding: 10px;*/
 }

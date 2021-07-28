@@ -14,9 +14,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
-<!-- TODO: Modify the below script to add an 'activate map' functionality to webpage to allow
-     TODO: User to take a screenshot (and maybe this will also allow direct-grabbing? -->
-
     <script>
     function appendScript( url, callback ) {
         var script = document.createElement( "script" )
@@ -54,20 +51,25 @@
             <div id="activate-map-btn"><button onclick="appendMap();">Activate map</button></div>
         </div>
     </div>
-    <div id="map_canvas" class="map_part" style="height:600px;"></div>
-    <div id="coords" class=""></div>
+    <div id="map_canvas" class="map_part" style="height:640px;width:640px"></div>
+    <div id="coords" class="" style="width:0px"></div>
 </div>
 
 <!-- End of to do -->
 </head>
+
+<br>
+<br>
+<a id="staticGrabSpot"></a>
+<br>
+<br>
+<button id="btnMLBegin" class="">Grab Static Map!</button>
+
+
 <body>
-    <img id="test" src="" style="
-            background: no-repeat center;
-            background-position: center;
-            background-size: cover;
-            height: 100%;
-            position: relative;
-    "/>
+
+
+    <br>
 
     <h1 class="">Anonymous UserID used for unique Filename Upload</h1>
     <button id="btnLogin" class="">Assign Anonymous UserID</button>
@@ -75,7 +77,6 @@
 
 <progress value="0" max="100" id="uploader" class="hide">0%</progress>
 <input type="file" value="upload" id="fileButton" class="hide"/>
-
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>

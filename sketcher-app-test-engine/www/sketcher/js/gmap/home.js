@@ -1,11 +1,14 @@
+/*
 var map;
+var centerUrl;
+var mapZoom;
 
 
 function initialize() {
     //var latlng = new google.maps.LatLng(53.396540795528246,-7.942222549768076);
     //var latlng = new google.maps.LatLng(53.396540795528246,-7.942222549768076);
     //var latlng = new google.maps.LatLng(53.396540795528246,-7.942222549768076);
-    var latlng = new google.maps.LatLng(38.8976925,-77.0368151);
+    var latlng = new google.maps.LatLng(38.89763405057457, -77.03643959073791);
     // set direction render options
     var rendererOptions = { draggable: true };
     directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
@@ -31,7 +34,11 @@ function initialize() {
     map.addListener("mousemove", (event) => {
         coordsDiv.textContent =
             "Center: " +
-            map.getCenter() //
+            map.getCenter() +
+            //" Bounds: " +
+            //map.getBounds() +
+            " Zoom: " +
+            map.getZoom()//
             // +
             //" lat: " +
             //(event.latLng.lat()) +
@@ -39,6 +46,30 @@ function initialize() {
             //"lng: " +
             //(event.latLng.lng());
     });
+    map.addListener("click", (event) => {
+        centerUrl = map.getCenter().toUrlValue();
+        mapZoom = map.getZoom();
+        console.log(centerUrl, mapZoom)
+    });
+
+    map.addListener("mouseout", (event) => {
+        centerUrl = map.getCenter().toUrlValue();
+        mapZoom = map.getZoom();
+        console.log(centerUrl, mapZoom)
+    });
+
+    const btnGrabMap = document.getElementById('btnGrabMap');
+
+
+// Click button to grab static image & display based on variables on dynamic map
+    btnGrabMap.addEventListener('click', e => {
+        console.log(centerUrl, mapZoom);
+        var static_Img = document.createElement('img');
+        static_Img.src = 'https://maps.googleapis.com/maps/api/staticmap?center=' + centerUrl + '&zoom=' + mapZoom + '&maptype=satellite' + '&size=640x640' + '&key=AIzaSyCiTASyv4ikDvjz3nRgbGNiUAn-Z4MOLlI&v=3.exp&libraries=places';
+        console.log(static_Img.src)
+        document.getElementById('staticGrabSpot').appendChild(static_Img);
+    });
+
     // Add a marker to the map for the end-point of the directions.
     /*
      var marker = new google.maps.Marker({
@@ -47,40 +78,7 @@ function initialize() {
      title:"Rodderhof, Oss"
      });
      */
+/*
 }
-$(document).ready(function() {
-    var autocompleteLoaded = 0;
-    var autocomplete;
 
-    $('#street_address').keyup(function() {
-        if (autocompleteLoaded==1 && this.value.length<7)
-        {
-            autocomplete.unbindAll();
-            google.maps.event.clearInstanceListeners(document.getElementById('street_address'));
-            $(".pac-container").hide();
-            autocompleteLoaded=0;
-        }
-        if (autocompleteLoaded==0 && this.value.length>=7)
-        {
-            autocompleteLoaded=1;
-            var input = document.getElementById('street_address');
-            var options = {
-            };
-            autocomplete = new google.maps.places.Autocomplete(input, options);
-
-            google.maps.event.addListener(autocomplete, 'place_changed', function() {});
-        }
-    });
-
-    $("#frm_search_address").submit(function() {
-
-        var street_address = $("#street_address").val();
-        if(street_address.length > 0 ){
-            // display code address
-            showAddress(street_address);
-        }
-
-        return false;
-    });
-
-});
+*/
