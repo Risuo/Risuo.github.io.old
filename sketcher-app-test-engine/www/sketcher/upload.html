@@ -14,68 +14,42 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
-    <script>
-    function appendScript( url, callback ) {
-        var script = document.createElement( "script" )
-        script.type = "text/javascript";
-        if(script.readyState) {  //IE
-            script.onreadystatechange = function() {
-                if ( script.readyState === "loaded" || script.readyState === "complete" ) {
-                    script.onreadystatechange = null;
-                    callback();
-                }
-            };
-        } else {  //Others
-            script.onload = function() {
-                callback();
-            };
-        }
-
-        script.src = url;
-        document.getElementsByTagName( "head" )[0].appendChild( script );
-    }
-
-    function appendMap() {
-        appendScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyCiTASyv4ikDvjz3nRgbGNiUAn-Z4MOLlI&v=3.exp&libraries=places", function() {
-                $("#activate-map").css("display", "none");
-                initialize();
-        });
-    }
-
-</script>
-
-<div id="map_canvas_container" class="col-md-7">
-    <div id="activate-map-container">
-        <div id="activate-map">
-            <div id="activate-map-btn"><button onclick="appendMap();">Activate map</button></div>
-        </div>
+<div class = "pac-card" id="pac-card">
+    <div id="pac-container">
+        <input id="pac-input" type="text" placeholder="Activate Map (below) Then Enter a location" />
     </div>
-    <div id="map_canvas" class="map_part" style="height:640px;width:640px"></div>
-    <div id="coords" class="" style="width:0px"></div>
 </div>
+<br>
+    <div id="map_canvas_container" class="col-md-7">
+        <div id="activate-map-container">
+            <div id="activate-map">
+                <div id="activate-map-btn"><button onclick="appendMap();
+                document.getElementById('map_canvas').style.height = '640px'">Activate map</button></div>
+            </div>
+                <div id="map_canvas" class="map_part" style="height:1px;width:640px"></div>
+                <div id="infowindow-content">
+                </div>
+        </div>
 
-<!-- End of to do -->
-</head>
-
-<br>
-<br>
-<a id="staticGrabSpot"></a>
-<br>
-<br>
-<button id="btnMLBegin" class="">Grab Static Map!</button>
-
+    </div>
+<div class="container">
+    <button id="btnMLBegin" class="hide">Run Building Identification on current Map View!</button>
+    <button id="btnMLShow" class="hide">Show Building Identifications!</button>
+</div>
 
 <body>
 
 
     <br>
-
+<!--
     <h1 class="">Anonymous UserID used for unique Filename Upload</h1>
     <button id="btnLogin" class="">Assign Anonymous UserID</button>
     <button id="btnLogout" class="hide">Reset User ID</button>
 
-<progress value="0" max="100" id="uploader" class="hide">0%</progress>
-<input type="file" value="upload" id="fileButton" class="hide"/>
+    <progress value="0" max="100" id="uploader" class="hide">0%</progress>
+    <input type="file" value="upload" id="fileButton" class="hide"/>
+-->
+
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
@@ -87,8 +61,6 @@
 <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
 
 <script src="js/firebase-app.js"></script>
-
-
 
 </body>
 
